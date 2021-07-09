@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title%}
+	투표자 목록
+{% endblock %}
+
+{% block content %}
+	<div class="btn-group">
+		<p>
+			<a href="{% url 'stdAdd' %}"><button type="button" class="btn btn-default">투표자 추가</button></a>
+			<a href="{% url 'stdsAdd' %}"><button type="button" class="btn btn-primary">투표자 EXCEL 파일로 추가</button></a>
+			<a href="{% url 'stdsDel' %}"><button type="button" class="btn btn-danger">투표자 모두 삭제</button></a>
+      	</p>
+	</div>
+
+	<div class="row">
+        <div class="col-md-12">
+          	<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">학년</th>
+					<th scope="col">반</th>
+					<th scope="col">생년월일</th>
+					<th scope="col">이름</th>
+					<th scope="col">수정</th>
+					<th scope="col">삭제</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for student in object_list %}
+				<tr>
+					<td>{{student.s_no}}</td>
+					<td>{{student.s_grade}}</td>
+					<td>{{student.s_class}}</td>
+					<td>{{student.s_birth}}</td>
+					<td>{{student.s_name}}</td>
+					<td><a href="{% url 'stdEdit' pk=student.s_no %}" class="btn btn-success btn-sm">수정</a></td>
+					<td><a href="{% url 'stdDel' pk=student.s_no %}" class="btn btn-danger btn-sm">삭제</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+	</table>
+{% endblock %}

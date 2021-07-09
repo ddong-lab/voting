@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title%}
+	후보자 목록
+{% endblock %}
+
+{% block content %}
+	<div class="btn-group">
+		<p>
+			<a href="{% url 'cndAdd' %}"><button type="button" class="btn btn-default">입후보자 추가</button></a>
+      	</p>
+	</div>
+
+	<div class="row">
+        <div class="col-md-12">
+          	<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">기호</th>
+					<th scope="col">학년</th>
+					<th scope="col">반</th>
+					<th scope="col">이름</th>
+					<th scope="col">수정</th>
+					<th scope="col">삭제</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for candidate in object_list %}
+				<tr>
+					<td>{{candidate.c_seq}}</td>
+					<td>{{candidate.c_no}}</td>
+					<td>{{candidate.c_grade}}</td>
+					<td>{{candidate.c_class}}</td>
+					<td>{{candidate.c_name}}</td>
+					<td><a href="{% url 'cndEdit' pk=candidate.seq %}" class="btn btn-success btn-sm">수정</a></td>
+					<td><a href="{% url 'cndDel' pk=candidate.seq %}" class="btn btn-danger btn-sm">삭제</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+	</table>
+{% endblock %}

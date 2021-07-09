@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title%}
+	후보자 삭제
+{% endblock %}
+
+{% block content %}
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="alert alert-danger">후보자 "{{object}}"를 정말로 삭제하시겠습니까?</div>
+    <input type="submit" value="삭제" class="btn btn-danger">
+  </form>
+{% endblock %}
